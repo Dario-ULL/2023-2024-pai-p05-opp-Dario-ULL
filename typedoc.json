@@ -1,0 +1,8 @@
+{
+    "entryPoints": [
+        "./src/jutge/the-sequence-of-collatz-P80660/the-sequence-of-collatz-P80660.ts",
+        "./src/jutge/collatz-psuedo-sequences-P91173/collatz-psuedo-sequences-P91173.ts",
+        "./src/jutge/sum-of-fractions-P76024/sum-of-fractions-P76024.ts"
+    ],
+    "out": "./docs"
+}
