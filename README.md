@@ -6,5 +6,4 @@ The project directory organization is as follows:
 .
 └── src
     ├── Racional
-    ├── Myset
-
+    └── Myset
