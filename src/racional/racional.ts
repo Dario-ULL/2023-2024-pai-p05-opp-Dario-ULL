@@ -8,92 +8,111 @@
  * @since 26/02/2024
  * @desc Racional
  *       Clase racional com operaciones basicas
- *       
  */
 
 
 export class Racional {
-    private numerador: number;
-    private denominador: number;
-  
-    constructor(numerador: number, denominador: number) {
-      if (denominador === 0) {
-        throw new Error("El denominador no puede ser cero");
-      }
-  
-      this.numerador = numerador;
-      this.denominador = denominador;
-      this.simplificar();
+  /**
+   * Atributos privados de la clase
+   * @param {number} numerador  -  Representa el numerador del numero
+   * @param {number} denominador  -  Representa el denominador del numero
+  */
+  private numerador: number;
+  private denominador: number;
+
+	/**
+   * Construcctor de la clase Racional
+   * @param {number} numerador  -  Representa el numerador del numero
+   * @param {number} denominador  -  Representa el denominador del numero
+  */
+  constructor(numerador: number, denominador: number) {
+    if (denominador === 0) {
+      throw new Error("El denominador no puede ser cero");
     }
-  
-    private simplificar(): void {
-      const gcd = this.calcularMCD(this.numerador, this.denominador);
-      this.numerador /= gcd;
-      this.denominador /= gcd;
-    }
-  
-    private calcularMCD(numero1: number, numero2: number): number {
-      return numero2 === 0 ? numero1 : this.calcularMCD(numero2, numero1 % numero2);
-    }
-  
-    sumar(otro: Racional): Racional {
-      const nuevoNumerador = this.numerador * otro.denominador + otro.numerador * this.denominador;
-      const nuevoDenominador = this.denominador * otro.denominador;
-      return new Racional(nuevoNumerador, nuevoDenominador);
-    }
-  
-    restar(otro: Racional): Racional {
-      const nuevoNumerador = this.numerador * otro.denominador - otro.numerador * this.denominador;
-      const nuevoDenominador = this.denominador * otro.denominador;
-      return new Racional(nuevoNumerador, nuevoDenominador);
-    }
-  
-    multiplicar(otro: Racional): Racional {
-      const nuevoNumerador = this.numerador * otro.numerador;
-      const nuevoDenominador = this.denominador * otro.denominador;
-      return new Racional(nuevoNumerador, nuevoDenominador);
-    }
-  
-    dividir(otro: Racional): Racional {
-      if (otro.numerador === 0) {
-        throw new Error("No se puede dividir por cero");
-      }
-  
-      const nuevoNumerador = this.numerador * otro.denominador;
-      const nuevoDenominador = this.denominador * otro.numerador;
-      return new Racional(nuevoNumerador, nuevoDenominador);
-    }
-  
-    comaparar(otro: Racional): boolean {
-      return this.numerador === otro.numerador && this.denominador === otro.denominador;
-    }
-  
-    toString(): string {
-      return `${this.numerador}/${this.denominador}`;
-    }
+    this.numerador = numerador;
+    this.denominador = denominador;
+    this.simplificar();
+  }
+ 
+	/**
+   * Funcion simplificar de la clase Racional. Simplifica la fraccion lo mactimo posible.
+   * @returns {void}
+   */
+  private simplificar(): void {
+    const GCD = this.calcularMCD(this.numerador, this.denominador);
+    this.numerador /= GCD;
+    this.denominador /= GCD;
+  }
+
+  /**
+   * Funcion calcularMCD de la clase Racional. Calcula el MCD de forma recursiva.
+   * @returns {number}  -  MCD
+   */
+  private calcularMCD(numero1: number, numero2: number): number {
+    return numero2 === 0 ? numero1 : this.calcularMCD(numero2, numero1 % numero2);
   }
   
+	/**
+   * Funcion sumar de la clase Racional. Suma dos numeros racioanles.
+	 * @param {Racional} otro  -  otro numero racional
+   * @returns {Racional}
+   */
+  sumar(otro: Racional): Racional {
+    const NUEVO_NUMERADOR = this.numerador * otro.denominador + otro.numerador * this.denominador;
+    const NUEVO_DENOMINADOR = this.denominador * otro.denominador;
+    return new Racional(NUEVO_NUMERADOR, NUEVO_DENOMINADOR);
+  }
+  
+	/**
+   * Funcion restar de la clase Racional. Resta dos numeros racioanles.
+	 * @param {Racional} otro  -  otro numero racional
+   * @returns {Racional}
+   */
+  restar(otro: Racional): Racional {
+    const NUEVO_NUMERADOR = this.numerador * otro.denominador - otro.numerador * this.denominador;
+    const NUEVO_DENOMINADOR = this.denominador * otro.denominador;
+    return new Racional(NUEVO_NUMERADOR, NUEVO_DENOMINADOR);
+  }
 
-
-  // Programa cliente
-  const RACIONAL1 : Racional = new Racional(1, 3);
-  const RACIONAL2 : Racional = new Racional(3, 4);
+	/**
+   * Funcion multiplicar de la clase Racional. Multiplica dos numeros racioanles.
+	 * @param {Racional} otro  -  otro numero racional
+   * @returns {Racional}
+   */
+  multiplicar(otro: Racional): Racional {
+		const NUEVO_NUMERADOR = this.numerador * otro.numerador;
+    const NUEVO_DENOMINADOR = this.denominador * otro.denominador;
+    return new Racional(NUEVO_NUMERADOR, NUEVO_DENOMINADOR);
+  }
   
-  console.log("Racional 1:", RACIONAL1.toString());
-  console.log("Racional 2:", RACIONAL2.toString());
+	/**
+   * Funcion dividir de la clase Racional. Divide dos numeros racioanles.
+	 * @param {Racional} otro  -  otro numero racional
+   * @returns {Racional}
+   */
+  dividir(otro: Racional): Racional {
+    if (otro.numerador === 0) {
+      throw new Error("No se puede dividir por cero");
+    }
+    const NUEVO_NUMERADOR = this.numerador * otro.denominador;
+    const NUEVO_DENOMINADOR = this.denominador * otro.numerador;
+    return new Racional(NUEVO_NUMERADOR, NUEVO_DENOMINADOR);
+  }
   
-  const SUMA : Racional = RACIONAL1.sumar(RACIONAL2);
-  console.log("Suma:", SUMA.toString());
+	/**
+   * Funcion comparar de la clase Racional. Comapra dos numeros racioanles.
+	 * @param {Racional} otro  -  otro numero racional
+   * @returns {boolean}
+   */
+  comaparar(otro: Racional): boolean {
+    return this.numerador === otro.numerador && this.denominador === otro.denominador;
+  }
   
-  const RESTA : Racional = RACIONAL1.restar(RACIONAL2);
-  console.log("Resta:", RESTA.toString());
-  
-  const MULTIPLICACION : Racional = RACIONAL1.multiplicar(RACIONAL2);
-  console.log("Multiplicación:", MULTIPLICACION.toString());
-  
-  const DIVISION : Racional = RACIONAL1.dividir(RACIONAL2);
-  console.log("División:", DIVISION.toString());
-  
-  const IGUALDAD : boolean = RACIONAL1.comaparar(RACIONAL2);
-  console.log("Igualdad:", IGUALDAD);
-  
+	/**
+   * Funcion toString de la clase Racional. Devolvera un string con el valor del numero racional
+   * @returns {string}
+  */
+  toString(): string {
+    return `${this.numerador}/${this.denominador}`;
+  }
+}

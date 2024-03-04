@@ -25,4 +25,9 @@ describe('Comprobacion de las operaciones Basicas', () => {
 	it('compararVerdadero', () => {
     expect(RACIONAL1.comaparar(RACIONAL1)).toEqual(true);
   })
+  it('Modificacion', () => {
+    const RACIONAL3 = new Racional(30, 60);
+    const RACIONAL4 = new Racional(6, 60);
+    expect(RACIONAL3.sumar(RACIONAL4)).toEqual(new Racional(12, 20));
+  })
 })

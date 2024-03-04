@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+    "target": "es2021",
     "module": "commonjs",
     "allowJs": true,
     "rootDir": "./",
@@ -9,13 +9,15 @@
     "strictPropertyInitialization": true,     /* will raise an error when a class property was declared but not set in the constructor */
     "strictNullChecks": true,                 /* When type checking, take into account `null` and `undefined`. */
     "noImplicitAny": true,                    /* will issue an error whenever it would have inferred any:*/ 
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true
   },
   "include": ["src/**/*.ts"],
   "exclude": [
         "node_modules",
         "build",
         "lib",
+        "dist",
         "test",
         "public"
   ]
